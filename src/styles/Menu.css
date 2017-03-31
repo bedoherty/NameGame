@@ -1,0 +1,11 @@
+.menu-background {
+	background-color: rgba(0, 0, 0, 0.3);
+	width: 100vw;
+	height: 100vh;
+	text-align: center;
+}
+
+.menu-list {
+	display: inline-block;
+	margin-top: 20vh;
+}

@@ -1,3 +1,5 @@
 .window {
 	background-color: cornflowerblue;
+	width: 100vw;
+	height: 100vh;
 }
