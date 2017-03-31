@@ -13,27 +13,27 @@ class Window extends Component {
   	this.state = {
   		"menuItems": {
 			"Time Trial": {
-				"callback": () => {console.log("Time Trial");},
+				"callback": () => {this.setGameState("menu2");},
 				"enabled": true
 			},
 			"Marathon": {
-				"callback": () => {console.log("Marathon");},
+				"callback": () => {this.setGameState("menu2");},
 				"enabled": true
 			},
 			"Mat(t)": { 
-				"callback": () => {console.log("Mat(t)");},
+				"callback": () => {this.setGameState("menu2");},
 				"enabled": true
 			},
 			"Time Trial (R)": {
-				"callback": () => {console.log("Time Trial (R)");},
+				"callback": () => {this.setGameState("menu2");},
 				"enabled": true
 			},
 			"Marathon (R)": {
-				"callback": () => {console.log("Marathon (R)");},
+				"callback": () => {this.setGameState("menu2");},
 				"enabled": true
 			},
 			"Mat(t) (R)": {
-				"callback": () => {console.log("Mat(t) (R)");},
+				"callback": () => {this.setGameState("menu2");},
 				"enabled": true
 			},
 			"Hints": {
@@ -41,13 +41,15 @@ class Window extends Component {
 				"enabled": false
 			},
 		},
+		"gameState": "menu"
   	}
   }
 
   render() {
     return (
       <div className="window">
-      	<Menu menuItems={this.state.menuItems} hintsEnabled={this.state.hintsEnabled}/>
+      	{this.state.gameState == "menu" ? "" : (<div className="top-right-x" onClick={() => {this.setGameState("menu")}}>X</div>) }
+      	{this.renderGame()}
       </div>
     );
   }
@@ -59,6 +61,21 @@ class Window extends Component {
   	this.setState({
   		"menuItems": menuItems
   	});
+  }
+
+  setGameState(gameState) {
+  	this.setState({
+  		"gameState": gameState
+  	});
+  }
+
+  renderGame() {
+  	if (this.state.gameState == "menu")
+  	{
+  		return (
+  			<Menu menuItems={this.state.menuItems} hintsEnabled={this.state.hintsEnabled}/>
+		);
+  	}
   }
 }
 
