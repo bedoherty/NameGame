@@ -38,3 +38,11 @@ Reverse Mode - Future
 Hints - Future
 > **Toggle Description:**
 > - Options will disappear over time
+
+TO-DO
+-------------
+- Implement Mat(t) Mode
+- Implement Reverse M ode
+- Implement Hints
+- Refactor existing codebase
+- Store high scores in browser local storage
