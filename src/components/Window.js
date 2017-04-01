@@ -4,6 +4,7 @@ import '../styles/Window.css';
 //	Importing components
 import Menu from './Menu'
 import TimeTrial from './TimeTrial'
+import Marathon from './Marathon'
 
 class Window extends Component {
 
@@ -21,7 +22,7 @@ class Window extends Component {
 				"enabled": true
 			},
 			"Marathon": {
-				"callback": () => {this.setGameState("menu2");},
+				"callback": () => {this.setGameState("marathon");},
 				"enabled": true
 			},
 			"Mat(t)": { 
@@ -94,16 +95,22 @@ class Window extends Component {
   renderGame() {
   	if (this.state.gameState == "menu")
   	{
-  		return (
-  			<Menu menuItems={this.state.menuItems}/>
-		);
+      return (
+    	 <Menu menuItems={this.state.menuItems}/>
+      );
   	}
   	if (this.state.gameState == "time-trial")
   	{
-  		return (
-  			<TimeTrial WTData={this.state.WTData} hintsEnabled={this.state.menuItems.Hints.enabled} />
-		);
+      return (
+        <TimeTrial WTData={this.state.WTData} hintsEnabled={this.state.menuItems.Hints.enabled} />
+      );
   	}
+    if (this.state.gameState == "marathon")
+    {
+      return (
+        <Marathon WTData={this.state.WTData} hintsEnabled={this.state.menuItems.Hints.enabled} />
+      );
+    }
   }
 }
 

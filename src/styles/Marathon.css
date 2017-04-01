@@ -1,0 +1,20 @@
+.marathon-background {
+	width: 100vw;
+	height: 100vh;
+	text-align: center;
+}
+
+.marathon-conntainer {
+	display: inline-block;
+	margin-top: 20vh;
+}
+
+.marathon-label {
+	margin-top: 5vh;
+	color: white;
+	font-family: 'Press Start 2P', cursive;
+	font-size: 3vh;
+	-webkit-user-select: none; /* Chrome/Safari */        
+	-moz-user-select: none; /* Firefox */
+	-ms-user-select: none; /* IE10+ */
+}

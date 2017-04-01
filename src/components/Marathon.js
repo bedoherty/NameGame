@@ -1,11 +1,10 @@
 /*
- *	This component implements the Time Trial game mode.
- *	This game mode tests to see how quickly you can get
- *	one correct answer submitted.
+ *  This component implements the Marathon game style.
+ *  This game mode works to see how many correct answers
+ *  you can give in a row.
  */
-
 import React, { Component } from 'react';
-import '../styles/TimeTrial.css';
+import '../styles/Marathon.css';
 
 //  Importing components
 import GameClock from './GameClock';
@@ -16,7 +15,7 @@ import Stats from './Stats';
 
 //https://placehold.it/340x340
 
-class TimeTrial extends Component {
+class Marathon extends Component {
   constructor(props) {
   	super(props);
 
@@ -37,6 +36,8 @@ class TimeTrial extends Component {
   		"lastRoundWasCorrect": null,
   		"correctAnswers": 0,
   		"incorrectAnswers": 0,
+      "currStreak": 0,
+      "bestStreak": 0,
   	};
   }
 
@@ -46,14 +47,14 @@ class TimeTrial extends Component {
 
   render() {
     return (
-      <div className="time-trial-background">
-        <div className="time-trial-conntainer">
+      <div className="marathon-background">
+        <div className="marathon-conntainer">
         	<PictureRow currentData={this.state.currentData} callbacks={this.state.callbacks} dataReady={this.state.dataReady} />
-        	<div className="time-trial-label">Who is {this.state.currName}?  {this.state.result}</div>
+        	<div className="marathon-label">Who is {this.state.currName}?  {this.state.result}</div>
         	<CorrectAnswer wasCorrect={this.state.lastRoundWasCorrect} correctImage={this.state.lastRoundURL} correctName={this.state.lastRoundName}/>
         </div>
-        <GameClock time={this.state.gameClock} incCallback={this.incrementClock.bind(this)}/>
-        <HighScore highScore={this.state.currBest} />
+        <GameClock time={this.state.currStreak} incCallback={this.incrementClock.bind(this)}/>
+        <HighScore highScore={this.state.currStreak} />
         <Stats stats={this.state.correctAnswers.toString() + "/" + (this.state.correctAnswers + this.state.incorrectAnswers).toString() + " Correct"} />
       </div>
     );
@@ -69,21 +70,29 @@ class TimeTrial extends Component {
   tryAnswer = (answer) => {
   	var answerTime = this.state.gameClock;
   	console.log(this.state.currentData[this.state.currAnswer]);
-  	if (answer == this.state.currAnswer) {
+  	if (answer == this.state.currAnswer) 
+    {
   		this.setState({
   			"lastRoundURL":  this.state.currentData[this.state.currAnswer].headshot.url,
   			"lastRoundName": this.state.currentData[this.state.currAnswer].firstName + " " + this.state.currentData[this.state.currAnswer].lastName,
   			"lastRoundWasCorrect": true,
-  			"correctAnswers": this.state.correctAnswers + 1
+  			"correctAnswers": this.state.correctAnswers + 1,
+        "currStreak": this.state.currStreak + 1,
   		});
   	}
   	else
   	{
+      if (this.state.currStreak > this.state.bestStreak) {
+        this.setState({
+          "bestStreak": this.state.currStreak,
+        });
+      }
   		this.setState({
   			"lastRoundURL":  this.state.currentData[this.state.currAnswer].headshot.url,
   			"lastRoundName": this.state.currentData[this.state.currAnswer].firstName + " " + this.state.currentData[this.state.currAnswer].lastName,
   			"lastRoundWasCorrect": false,
-  			"incorrectAnswers": this.state.incorrectAnswers + 1
+  			"incorrectAnswers": this.state.incorrectAnswers + 1,
+        "currStreak": 0,
   		});
   	}
 
@@ -136,4 +145,4 @@ class TimeTrial extends Component {
   };
 }
 
-export default TimeTrial;
+export default Marathon;
