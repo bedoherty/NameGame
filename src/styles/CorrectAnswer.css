@@ -1,0 +1,21 @@
+.correct-answer {
+	margin-top: 2vh;
+}
+
+.correct-answer-label {
+	color: white;
+	font-family: 'Press Start 2P', cursive;
+	font-size: 2vh;
+	margin-top: 2vh;
+	-webkit-user-select: none; /* Chrome/Safari */        
+	-moz-user-select: none; /* Firefox */
+	-ms-user-select: none; /* IE10+ */
+}
+
+.correct {
+	color: green;
+}
+
+.incorrect {
+	color: red;
+}
