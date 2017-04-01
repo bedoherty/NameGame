@@ -10,7 +10,6 @@ Game Modes
 -------------
 Marathon - Working
 > **Game Description:**
-
 > - Users are presented with 5 faces to name
 > - Tracks current best marathon (correct answers in a row)
 > - Tracks best marathon over a session
@@ -19,7 +18,6 @@ Marathon - Working
 
 Time Trial - Working
 > **Game Description:**
-
 > - Users are presented with 5 faces to name
 > - Tracks time it takes to answer each question
 > - Tracks fastest correct response time over a session
