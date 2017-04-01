@@ -11,7 +11,7 @@ class CorrectAnswer extends Component {
   render() {
     return (
       <div className="correct-answer">
-        {this.props.correctImage != "" ? (<img width="255" src={this.props.correctImage} />) : "" } <br />
+        {this.props.correctImage != "" ? (<img src={this.props.correctImage} />) : "" } <br />
         <div className={this.props.wasCorrect ? "correct-answer-label correct" : "correct-answer-label incorrect"}>{this.props.correctName}</div>
       </div>
     );
