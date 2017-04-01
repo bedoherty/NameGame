@@ -31,15 +31,12 @@ These features can be toggled on and off for all game modes.
 
 Mat(t) Mode - Future
 > **Toggle Description:**
-
 > - All correct answers will be someone named Matt
 
 Reverse Mode - Future
 > **Toggle Description:**
-
 > - Users will be presented with a face and pick from 5 names
 
 Hints - Future
 > **Toggle Description:**
-
 > - Options will disappear over time
