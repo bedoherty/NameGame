@@ -4,10 +4,6 @@ import '../styles/Stats.css';
 //  Importing components
 
 class Stats extends Component {
-  constructor(props) {
-  	super(props);
-  }
-
   render() {
     return (
       <div className="stats">

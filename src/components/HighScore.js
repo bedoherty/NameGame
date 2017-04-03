@@ -4,10 +4,6 @@ import '../styles/HighScore.css';
 //  Importing components
 
 class HighScore extends Component {
-  constructor(props) {
-  	super(props);
-  }
-
   render() {
     return (
       <div className="high-score">

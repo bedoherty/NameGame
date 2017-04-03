@@ -9,12 +9,6 @@ import loading from '../assets/img/loading.gif'
 
 
 class PictureRow extends Component {
-
-  constructor(props)
-  {
-  	super(props);
-  }
-
   render() {
     return (
       <div className="picture-row-container">
@@ -50,11 +44,11 @@ class PictureRow extends Component {
           :
           (
             <div>
-              <img src={loading} onClick={this.props.callbacks[0]} />
-              <img src={loading} onClick={this.props.callbacks[1]} />
-              <img src={loading} onClick={this.props.callbacks[2]} />
-              <img src={loading} onClick={this.props.callbacks[3]} />
-              <img src={loading} onClick={this.props.callbacks[4]} />
+              <img src={loading} onClick={this.props.callbacks[0]} alt="loading" />
+              <img src={loading} onClick={this.props.callbacks[1]} alt="loading" />
+              <img src={loading} onClick={this.props.callbacks[2]} alt="loading" />
+              <img src={loading} onClick={this.props.callbacks[3]} alt="loading" />
+              <img src={loading} onClick={this.props.callbacks[4]} alt="loading" />
             </div>
           )
         }

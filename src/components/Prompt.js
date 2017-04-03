@@ -4,15 +4,11 @@ import '../styles/Prompt.css';
 //  Importing components
 
 class Prompt extends Component {
-  constructor(props) {
-  	super(props);
-  }
-
   render() {
     return (
       <div>
         <div className="prompt-label">Who is:</div>
-        {this.props.promptImage ? (<img src={this.props.promptImage} className="prompt-image" />) : "" }
+        {this.props.promptImage ? (<img src={this.props.promptImage} className="prompt-image" alt="prompt-image" />) : "" }
       </div>
     );
   }

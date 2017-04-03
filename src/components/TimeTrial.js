@@ -79,7 +79,7 @@ class TimeTrial extends Component {
     if (this.props.hintsEnabled)
     {
       //  Check if the clock is at 3, 6, 9, or 12
-      if (this.state.gameClock % 3 == 0 && this.state.gameClock <= 12)
+      if (this.state.gameClock % 3 === 0 && this.state.gameClock <= 12)
       {
         console.log(this.state.gameClock.toString());
         this.eliminateRandomAnswer();
@@ -104,7 +104,7 @@ class TimeTrial extends Component {
   tryAnswer = (answer) => {
   	var answerTime = this.state.gameClock;
   	console.log(this.state.currentData[this.state.currAnswer]);
-  	if (answer == this.state.currAnswer) {
+  	if (answer === this.state.currAnswer) {
   		this.setState({
   			"lastRoundURL":  this.state.currentData[this.state.currAnswer].headshot.url,
   			"lastRoundName": this.state.currentData[this.state.currAnswer].firstName + " " + this.state.currentData[this.state.currAnswer].lastName,
@@ -147,7 +147,7 @@ class TimeTrial extends Component {
     console.log(this.state);
     for (var i = 0; i < 5; i++)
     {
-      if (i != this.state.currAnswer)
+      if (i !== this.state.currAnswer)
       {
         //  Pseudo random shuffle
         if (Math.random() > 0.5)

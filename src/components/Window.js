@@ -1,7 +1,8 @@
+//  Import React stuff
 import React, { Component } from 'react';
 import '../styles/Window.css';
 
-//	Importing components
+//	Import our components
 import Menu from './Menu'
 import TimeTrial from './TimeTrial'
 import Marathon from './Marathon'
@@ -46,7 +47,7 @@ class Window extends Component {
   render() {
     return (
       <div className="window">
-      	{this.state.gameState == "menu" ? "" : (<div className="top-right-x" onClick={() => {this.setGameState("menu")}}>X</div>) }
+      	{this.state.gameState === "menu" ? "" : (<div className="top-right-x" onClick={() => {this.setGameState("menu")}}>X</div>) }
       	{this.renderGame()}
       </div>
     );
@@ -130,13 +131,13 @@ class Window extends Component {
 
   //	Checks state and renders the appropriate game mode or menu
   renderGame() {
-  	if (this.state.gameState == "menu")
+  	if (this.state.gameState === "menu")
   	{
       return (
     	 <Menu menuItems={this.state.menuItems}/>
       );
   	}
-  	if (this.state.gameState == "time-trial")
+  	if (this.state.gameState === "time-trial")
   	{
       return (
         <TimeTrial  WTData={this.state.WTData} 
@@ -147,7 +148,7 @@ class Window extends Component {
                     />
       );
   	}
-    if (this.state.gameState == "marathon")
+    if (this.state.gameState === "marathon")
     {
       return (
         <Marathon   WTData={this.state.WTData} 
