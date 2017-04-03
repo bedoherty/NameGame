@@ -46,3 +46,4 @@ TO-DO
 - Implement Hints
 - Refactor existing codebase
 - Store high scores in browser local storage
+- Queue up image loading with an animation to display

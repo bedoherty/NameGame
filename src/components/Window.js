@@ -25,28 +25,21 @@ class Window extends Component {
 				"callback": () => {this.setGameState("marathon");},
 				"enabled": true
 			},
-			"Mat(t)": { 
-				"callback": () => {this.setGameState("menu2");},
-				"enabled": true
+			"Mat(t) Mode": { 
+				"callback": this.toggleMattMode,
+				"enabled": false
 			},
-			"Time Trial (R)": {
-				"callback": () => {this.setGameState("menu2");},
-				"enabled": true
-			},
-			"Marathon (R)": {
-				"callback": () => {this.setGameState("menu2");},
-				"enabled": true
-			},
-			"Mat(t) (R)": {
-				"callback": () => {this.setGameState("menu2");},
-				"enabled": true
+			"Reverse Mode": {
+				"callback": this.toggleReverseMode,
+				"enabled": false
 			},
 			"Hints": {
 				"callback": this.toggleHints,
 				"enabled": false
 			},
 		},
-		"gameState": "menu"
+		"gameState": "menu",
+    "mattCount": 0,
   	}
   }
 
@@ -57,6 +50,26 @@ class Window extends Component {
       	{this.renderGame()}
       </div>
     );
+  }
+
+  //  Helper function that toggles on and off Mat(t) Mode globally
+  toggleMattMode = () => {
+    console.log("Toggling Mat(t) Mode");
+    var menuItems = this.state.menuItems;
+    menuItems['Mat(t) Mode']['enabled'] = !menuItems['Mat(t) Mode']['enabled'];
+    this.setState({
+      "menuItems": menuItems
+    });
+  }
+
+  //  Helper function that toggles on and off hint mode globally
+  toggleReverseMode = () => {
+    console.log("Toggling Reverse Mode");
+    var menuItems = this.state.menuItems;
+    menuItems['Reverse Mode']['enabled'] = !menuItems['Reverse Mode']['enabled'];
+    this.setState({
+      "menuItems": menuItems
+    });
   }
 
   //	Helper function that toggles on and off hint mode globally
@@ -74,10 +87,12 @@ class Window extends Component {
   	return fetch('https://willowtreeapps.com/api/v1.0/profiles/')
       .then((response) => response.json())
       .then((responseJson) => {
-        console.log(responseJson);
+        
         this.setState({
-        	"WTData": responseJson
+        	"WTData": this.doMattSort(responseJson)
         });
+        console.log("WTDATA");
+        console.log(this.state.WTData);
       })
       .catch((error) => {
         console.error(error);
@@ -91,6 +106,33 @@ class Window extends Component {
   	});
   }
 
+  //  This is a silly helper method to shift all Mat(t) type
+  //  names to the front of the list to make the Mat(t) mode 
+  //  startup time faster at the expense of initial load times.
+  doMattSort = (data) => {
+    var WTData = [];
+    var mattCount = 0;
+    
+    for (var index = 0; index < 100; index++)
+    {
+      if (data['items'][index]['firstName'].startsWith("Mat"))
+      {
+        WTData.unshift(data['items'][index]);
+        mattCount++;
+      }
+      else 
+      {
+        WTData.push(data['items'][index]);
+      }
+    }
+
+    this.setState({
+      "mattCount": mattCount,
+    });
+
+    return WTData;
+  }
+
   //	Checks state and renders the appropriate game mode or menu
   renderGame() {
   	if (this.state.gameState == "menu")
@@ -102,13 +144,23 @@ class Window extends Component {
   	if (this.state.gameState == "time-trial")
   	{
       return (
-        <TimeTrial WTData={this.state.WTData} hintsEnabled={this.state.menuItems.Hints.enabled} />
+        <TimeTrial  WTData={this.state.WTData} 
+                    mattModeEnabled={this.state.menuItems['Mat(t) Mode'].enabled}
+                    mattCount={this.state.mattCount}
+                    reverseModeEnabled={this.state.menuItems['Reverse Mode'].enabled}
+                    hintsEnabled={this.state.menuItems.Hints.enabled}  
+                    />
       );
   	}
     if (this.state.gameState == "marathon")
     {
       return (
-        <Marathon WTData={this.state.WTData} hintsEnabled={this.state.menuItems.Hints.enabled} />
+        <Marathon   WTData={this.state.WTData} 
+                    mattModeEnabled={this.state.menuItems['Mat(t) Mode'].enabled}
+                    mattCount={this.state.mattCount}
+                    reverseModeEnabled={this.state.menuItems['Reverse Mode'].enabled}
+                    hintsEnabled={this.state.menuItems.Hints.enabled} 
+                    />
       );
     }
   }

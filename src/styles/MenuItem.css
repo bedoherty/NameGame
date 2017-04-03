@@ -11,3 +11,7 @@
 .menu-item:not(:last-child) {
 	margin-bottom: 5vh;
 }
+
+.red {
+	color: red;
+}

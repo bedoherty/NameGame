@@ -100,39 +100,66 @@ class TimeTrial extends Component {
   	this.pickRandomData();
   };
 
-  /*	I think the obvious solution to randomly selecting data might be to shuffle the array
-   *	and then pop off the first X elements,  However I think the average case of brute
-   *	force generating random numbers until I have 5 unique numbers has an average
-   *	runtime that is much better, even though the worst case might be indefinite, 
-   *	the probability of such an event is fairly low.
+  /*  I think the obvious solution to randomly selecting data might be to shuffle the array
+   *  and then pop off the first X elements,  However I think the average case of brute
+   *  force generating random numbers until I have 5 unique numbers has an average
+   *  runtime that is much better, even though the worst case might be indefinite, 
+   *  the probability of such an event is fairly low.
    */
   pickRandomData = () => {
-  	var indexes = [];
-  	var data = [];
+    var indexes = [];
+    var data = [];
+    var currAnswer = 0;
+    var itemsNeeded = 5;
 
-  	for (var i = 0; i < 5; i++)
-  	{
-  		var newIndex = Math.floor(Math.random() * 100);
+    //  If we're in Mat(t) Mode we'll need one less item and have to generate a Mat(t) first
+    if (this.props.mattModeEnabled)
+    {
+      var mattIndex = Math.floor(Math.random() * (this.props.mattCount));
+      
+      indexes.push(mattIndex);
+      data.push(this.state.WTData[mattIndex]);
 
-  		while (indexes.indexOf(newIndex) >= 0)
-  		{
-  			newIndex = Math.floor(Math.random() * 100);
-  		}
+      console.log("Matt:");
+      console.log(this.state.WTData[mattIndex]);
 
-  		indexes.push(newIndex);
+      currAnswer = data.indexOf(this.state.WTData[mattIndex]);
 
-  		data.push(this.state.WTData.items[newIndex]);
-  	}
-  	var currAnswer = Math.floor(Math.random() * (5));
+      itemsNeeded--;
+    }
+    else
+    {
+      currAnswer = Math.floor(Math.random() * (5));
+    }
 
-  	console.log(data[0]);
+    for (var i = 0; i < itemsNeeded; i++)
+    {
+      var newIndex = Math.floor(Math.random() * 100);
 
-  	this.setState({
-  		"currentData": data,
-  		"dataReady": true,
-  		"currName": data[currAnswer].firstName + " " + data[currAnswer].lastName,
-  		"currAnswer": currAnswer
-  	});
+      while (indexes.indexOf(newIndex) >= 0)
+      {
+        newIndex = Math.floor(Math.random() * 100);
+      }
+
+      indexes.push(newIndex);
+
+      //  Randomly pick push or unshift for a pseudoshuffle
+      if (Math.random() > 0.5)
+      {
+        data.push(this.state.WTData[newIndex]);
+      }
+      else
+      {
+        data.push(this.state.WTData[newIndex]);
+      }
+    }
+
+    this.setState({
+      "currentData": data,
+      "dataReady": true,
+      "currName": data[currAnswer].firstName + " " + data[currAnswer].lastName,
+      "currAnswer": currAnswer
+    });
   };
 }
 
