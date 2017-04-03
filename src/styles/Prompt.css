@@ -1,26 +1,15 @@
-.correct-answer {
-	margin-top: 7vh;
-}
-
-.correct-answer-label {
+.prompt-label {
+	margin-top: 5vh;
 	color: white;
 	font-family: 'Press Start 2P', cursive;
-	font-size: 2vh;
-	margin-top: 2vh;
+	font-size: 3vh;
 	-webkit-user-select: none; /* Chrome/Safari */        
 	-moz-user-select: none; /* Firefox */
 	-ms-user-select: none; /* IE10+ */
 }
 
-.correct {
-	color: green;
-}
-
-.incorrect {
-	color: red;
-}
-
-#correct-image {
+.prompt-image {
+	margin-top: 1vh;
 	width: 9vw;
 	display:block;
     margin-left: auto;

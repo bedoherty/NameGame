@@ -1,0 +1,27 @@
+.name-item:not(:last-child) {
+	margin-right: 3vw;
+}
+
+.name-item {
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	background-color: white;
+	min-width: 13.3vw;
+	min-height: 13.3vh;
+	color: black;
+	-webkit-transition: opacity 2s; /* Safari */
+	display: inline-block;
+	font-family: 'Press Start 2P', cursive;
+	font-size: 2vh;
+	cursor: pointer;
+	-webkit-user-select: none; /* Chrome/Safari */        
+	-moz-user-select: none; /* Firefox */
+	-ms-user-select: none; /* IE10+ */
+}
+
+.name-item > div {
+	margin-top: 2vh;
+}
+
+.hide {
+	opacity: 0;
+}

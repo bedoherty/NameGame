@@ -12,8 +12,8 @@ import PictureRow from './PictureRow';
 import HighScore from './HighScore';
 import CorrectAnswer from './CorrectAnswer';
 import Stats from './Stats';
-
-//https://placehold.it/340x340
+import NameRow from './NameRow';
+import Prompt from './Prompt';
 
 class Marathon extends Component {
   constructor(props) {
@@ -51,8 +51,16 @@ class Marathon extends Component {
     return (
       <div className="marathon-background">
         <div className="marathon-conntainer">
-        	<PictureRow currentData={this.state.currentData} callbacks={this.state.callbacks} dataReady={this.state.dataReady} answerHints={this.state.answerHints} />
-        	<div className="marathon-label">Who is {this.state.currName}?  {this.state.result}</div>
+          {this.props.reverseModeEnabled ?
+            (<NameRow currentData={this.state.currentData} callbacks={this.state.callbacks} dataReady={this.state.dataReady} answerHints={this.state.answerHints} />)
+            :
+            (<PictureRow currentData={this.state.currentData} callbacks={this.state.callbacks} dataReady={this.state.dataReady} answerHints={this.state.answerHints} />)
+          }
+        	{this.props.reverseModeEnabled ?
+            (<Prompt promptImage={this.state.currUrl} />)
+            :
+            (<div className="marathon-label">Who is {this.state.currName}?  {this.state.result}</div>)
+          }
         	<CorrectAnswer wasCorrect={this.state.lastRoundWasCorrect} correctImage={this.state.lastRoundURL} correctName={this.state.lastRoundName}/>
         </div>
         <GameClock time={this.state.currStreak} incCallback={this.incrementClock.bind(this)}/>
@@ -221,6 +229,7 @@ class Marathon extends Component {
   		"currentData": data,
   		"dataReady": true,
   		"currName": data[currAnswer].firstName + " " + data[currAnswer].lastName,
+      "currUrl": data[currAnswer].headshot.url,
   		"currAnswer": currAnswer
   	}, this.setupHints);
   };
