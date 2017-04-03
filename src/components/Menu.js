@@ -1,7 +1,18 @@
+/*
+ *  Menu.js
+ *
+ *  This component implements the game menu.
+ *
+ *  Written by Brian Doherty
+ */
+
+//  Import React stuff
 import React, { Component } from 'react';
+
+//  Import our styles
 import '../styles/Menu.css';
 
-//	Importing components
+//  Import our components
 import MenuItem from './MenuItem'
 
 class Menu extends Component {

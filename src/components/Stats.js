@@ -1,7 +1,16 @@
-import React, { Component } from 'react';
-import '../styles/Stats.css';
+/*
+ *	Stats.js
+ *
+ *	This component implements the statistics display.
+ *
+ *	Written by Brian Doherty
+ */
 
-//  Importing components
+//	Import React stuff
+import React, { Component } from 'react';
+
+//	Import our styles
+import '../styles/Stats.css';
 
 class Stats extends Component {
   render() {

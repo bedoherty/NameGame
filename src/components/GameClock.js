@@ -1,16 +1,21 @@
-import React, { Component } from 'react';
-import '../styles/GameClock.css';
+/*
+ *  GameClock.js
+ *
+ *  This component displays the current time a question has remained unanswered.
+ *
+ *  Written by Brian Doherty
+ */
 
-//  Importing components
+ // Import React stuff
+import React, { Component } from 'react';
+
+//  Import our styles
+import '../styles/GameClock.css';
 
 class GameClock extends Component {
   constructor(props) {
   	super(props);
 
-  	//	Setup our default state
-  	this.state = {
-  		"time": 0
-  	};
   	this.timer = null;
   }
 

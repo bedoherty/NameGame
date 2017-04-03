@@ -1,7 +1,16 @@
-import React, { Component } from 'react';
-import '../styles/Prompt.css';
+/*
+ *	Prompt.js
+ *
+ *	Implements the picture prompt for reverse mode.
+ *
+ *	Written by Brian Doherty
+ */
 
-//  Importing components
+//	Import React stuff
+import React, { Component } from 'react';
+
+//	Import our styles
+import '../styles/Prompt.css';
 
 class Prompt extends Component {
   render() {

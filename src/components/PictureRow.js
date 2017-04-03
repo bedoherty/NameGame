@@ -1,10 +1,18 @@
+/*
+ *  PictureRow.js
+ *
+ *  This component implements the list of pictures to display in normal mode
+ *
+ *  Written by Brian Doherty
+ */
+
+//  Import React stuff
 import React, { Component } from 'react';
+
+//  Import our styles
 import '../styles/PictureRow.css';
 
-//  Importing components
-
-//https://placehold.it/340x340
-//	Importing custom graphics
+//	Importing our custom graphics
 import loading from '../assets/img/loading.gif'
 
 

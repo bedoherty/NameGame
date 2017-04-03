@@ -1,5 +1,16 @@
+/*
+ *  Window.js
+ *
+ *  This component implements the overall window.
+ *  This will cover the whole viewport.
+ *
+ *  Written by Brian Doherty
+ */
+
 //  Import React stuff
 import React, { Component } from 'react';
+
+//  Import our styles
 import '../styles/Window.css';
 
 //	Import our components

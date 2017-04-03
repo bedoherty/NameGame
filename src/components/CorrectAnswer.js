@@ -1,7 +1,17 @@
-import React, { Component } from 'react';
-import '../styles/CorrectAnswer.css';
+/*
+ *	CorrectAnswer.js
+ *
+ *	This component displays what the correct answer of the last
+ *	question was to the user.
+ *
+ *	Written by Brian Doherty
+ */
 
-//  Importing components
+//	Import React stuff
+import React, { Component } from 'react';
+
+//	Import our styles
+import '../styles/CorrectAnswer.css';
 
 class CorrectAnswer extends Component {
   render() {

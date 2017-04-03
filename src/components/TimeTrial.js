@@ -1,13 +1,23 @@
 /*
- *	This component implements the Time Trial game mode.
- *	This game mode tests to see how quickly you can get
- *	one correct answer submitted.
+ *  TimeTrial.js
+ *
+ *  This component implements the Time Trial game mode.
+ *  This game mode tests to see how quickly you can get
+ *  one correct answer submitted.
+ *
+ *  Both this and the corresponding Marathon.js have a lot of overlapping code.
+ *  This really needs to be reworked so the code isn't duplicated nearly as much.
+ *
+ *  Written by Brian Doherty
  */
 
+ // Import React stuff
 import React, { Component } from 'react';
+
+//  Import our styles
 import '../styles/TimeTrial.css';
 
-//  Importing components
+//  Importing our components
 import GameClock from './GameClock';
 import PictureRow from './PictureRow';
 import HighScore from './HighScore';
@@ -44,6 +54,7 @@ class TimeTrial extends Component {
   	};
   }
 
+  //  Start picking random data as soon as our component has mounted.
   componentDidMount() {
     this.pickRandomData();
   }
@@ -71,6 +82,7 @@ class TimeTrial extends Component {
     );
   }
 
+  //  Callback to increment the game clock timer.
   incrementClock = () => {
     console.log("tick");
     this.setState({
@@ -87,6 +99,7 @@ class TimeTrial extends Component {
     }
   };
 
+  //  Helper function to eliminate a random wrong answer in hint mode.
   eliminateRandomAnswer = () => {
     //  Select a random wrong answer
     if (this.state.answersLeft.length > 0)
@@ -101,6 +114,7 @@ class TimeTrial extends Component {
     }
   };
 
+  //  Attempts to answer the question and then starts the next question.
   tryAnswer = (answer) => {
   	var answerTime = this.state.gameClock;
   	console.log(this.state.currentData[this.state.currAnswer]);
@@ -141,7 +155,7 @@ class TimeTrial extends Component {
     }
   };
 
-
+  //  Sets up the data needed for hints mode.
   setupHints = () => {
     var wrongAnswers = [];
     console.log(this.state);

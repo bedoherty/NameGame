@@ -1,7 +1,16 @@
-import React, { Component } from 'react';
-import '../styles/HighScore.css';
+/*
+ *	HighScore.js
+ *
+ *	This component displays the users current highest score
+ *
+ *	Written by Brian Doherty
+ */
 
-//  Importing components
+//	Import React stuff
+import React, { Component } from 'react';
+
+//	Import our styles
+import '../styles/HighScore.css';
 
 class HighScore extends Component {
   render() {

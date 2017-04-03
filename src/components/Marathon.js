@@ -1,12 +1,23 @@
 /*
+ *  Marathon.js
+ *
  *  This component implements the Marathon game style.
  *  This game mode works to see how many correct answers
  *  you can give in a row.
+ *
+ *  Both this and the corresponding TimeTrial.js have a lot of overlapping code.
+ *  This really needs to be reworked so the code isn't duplicated nearly as much.
+ *
+ *  Written by Brian Doherty
  */
+
+ // Import React stuff
 import React, { Component } from 'react';
+
+//  Import our styles
 import '../styles/Marathon.css';
 
-//  Importing components
+//  Importing our components
 import GameClock from './GameClock';
 import PictureRow from './PictureRow';
 import HighScore from './HighScore';
@@ -43,6 +54,7 @@ class Marathon extends Component {
   	};
   }
 
+  //  Start picking random data as soon as our component has mounted.
   componentDidMount() {
   	this.pickRandomData();
   }
@@ -70,6 +82,7 @@ class Marathon extends Component {
     );
   }
 
+  //  Callback to increment the game clock timer.
   incrementClock = () => {
   	console.log("tick");
   	this.setState({
@@ -86,6 +99,7 @@ class Marathon extends Component {
     }
   };
 
+  //  Helper function to eliminate a random wrong answer in hint mode.
   eliminateRandomAnswer = () => {
     //  Select a random wrong answer
     if (this.state.answersLeft.length > 0)
@@ -100,6 +114,7 @@ class Marathon extends Component {
     }
   };
 
+  //  Attempts to answer the question and then starts the next question.
   tryAnswer = (answer) => {
   	if (answer === this.state.currAnswer) 
     {
@@ -140,6 +155,7 @@ class Marathon extends Component {
   	this.pickRandomData();
   };
 
+  //  Sets up the data needed for hints mode.
   setupHints = () => {
     var wrongAnswers = [];
     console.log(this.state);
@@ -165,9 +181,6 @@ class Marathon extends Component {
     });
     console.log(wrongAnswers);
   }
-
-  //  This function really needs to be refactored into the window component and sent in as a callback method.
-  //  Future Brian can deal with this.
 
   /*	I think the obvious solution to randomly selecting data might be to shuffle the array
    *	and then pop off the first X elements,  However I think the average case of brute

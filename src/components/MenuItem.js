@@ -1,4 +1,15 @@
+/*
+ *	MenuItem.js
+ *
+ *	This component implements the individual menu items.
+ *
+ *	Written by Brian Doherty
+ */
+
+//	Import React stuff
 import React, { Component } from 'react';
+
+//	Import our styles
 import '../styles/MenuItem.css';
 
 class MenuItem extends Component {
