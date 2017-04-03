@@ -54,7 +54,6 @@ class Window extends Component {
 
   //  Helper function that toggles on and off Mat(t) Mode globally
   toggleMattMode = () => {
-    console.log("Toggling Mat(t) Mode");
     var menuItems = this.state.menuItems;
     menuItems['Mat(t) Mode']['enabled'] = !menuItems['Mat(t) Mode']['enabled'];
     this.setState({
@@ -64,7 +63,6 @@ class Window extends Component {
 
   //  Helper function that toggles on and off hint mode globally
   toggleReverseMode = () => {
-    console.log("Toggling Reverse Mode");
     var menuItems = this.state.menuItems;
     menuItems['Reverse Mode']['enabled'] = !menuItems['Reverse Mode']['enabled'];
     this.setState({
@@ -74,7 +72,6 @@ class Window extends Component {
 
   //	Helper function that toggles on and off hint mode globally
   toggleHints = () => {
-  	console.log("Toggling Hints");
   	var menuItems = this.state.menuItems;
   	menuItems['Hints']['enabled'] = !menuItems['Hints']['enabled'];
   	this.setState({
@@ -91,8 +88,6 @@ class Window extends Component {
         this.setState({
         	"WTData": this.doMattSort(responseJson)
         });
-        console.log("WTDATA");
-        console.log(this.state.WTData);
       })
       .catch((error) => {
         console.error(error);

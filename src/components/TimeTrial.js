@@ -20,6 +20,8 @@ class TimeTrial extends Component {
   constructor(props) {
   	super(props);
 
+    this.hints = null;
+
   	this.state = {
   		"WTData": this.props.WTData,
   		"dataReady": false,
@@ -37,18 +39,20 @@ class TimeTrial extends Component {
   		"lastRoundWasCorrect": null,
   		"correctAnswers": 0,
   		"incorrectAnswers": 0,
+      "answersLeft": [0, 1, 2, 3, 4],
+      "answerHints": [true, true, true, true, true],
   	};
   }
 
   componentDidMount() {
-  	this.pickRandomData();
+    this.pickRandomData();
   }
 
   render() {
     return (
       <div className="time-trial-background">
         <div className="time-trial-conntainer">
-        	<PictureRow currentData={this.state.currentData} callbacks={this.state.callbacks} dataReady={this.state.dataReady} />
+        	<PictureRow currentData={this.state.currentData} callbacks={this.state.callbacks} dataReady={this.state.dataReady} answerHints={this.state.answerHints} />
         	<div className="time-trial-label">Who is {this.state.currName}?  {this.state.result}</div>
         	<CorrectAnswer wasCorrect={this.state.lastRoundWasCorrect} correctImage={this.state.lastRoundURL} correctName={this.state.lastRoundName}/>
         </div>
@@ -60,10 +64,33 @@ class TimeTrial extends Component {
   }
 
   incrementClock = () => {
-  	console.log("tick");
-  	this.setState({
-  		"gameClock": Math.round((this.state.gameClock + 0.01) * 100) / 100
-  	});
+    console.log("tick");
+    this.setState({
+      "gameClock": Math.round((this.state.gameClock + 0.01) * 100) / 100
+    });
+    if (this.props.hintsEnabled)
+    {
+      //  Check if the clock is at 3, 6, 9, or 12
+      if (this.state.gameClock % 3 == 0 && this.state.gameClock <= 12)
+      {
+        console.log(this.state.gameClock.toString());
+        this.eliminateRandomAnswer();
+      }
+    }
+  };
+
+  eliminateRandomAnswer = () => {
+    //  Select a random wrong answer
+    if (this.state.answersLeft.length > 0)
+    {
+      var randomAnswerIndex = this.state.answersLeft.pop();//[Math.floor(Math.random() * this.state.answersLeft.length)];
+      console.log("Eliminating: " + (Math.random() * this.state.answersLeft.length).toString());
+      var answerHints = this.state.answerHints;
+      answerHints[randomAnswerIndex] = false;
+      this.setState({
+        "answerHints": answerHints,
+      });
+    }
   };
 
   tryAnswer = (answer) => {
@@ -98,7 +125,40 @@ class TimeTrial extends Component {
   	});
 
   	this.pickRandomData();
+    this.setupHints();
+    if (this.props.hintsEnabled)
+    {
+      this.destroyHints();
+      this.startHints();
+    }
   };
+
+
+  setupHints = () => {
+    var wrongAnswers = [];
+    console.log(this.state);
+    for (var i = 0; i < 5; i++)
+    {
+      if (i != this.state.currAnswer)
+      {
+        //  Pseudo random shuffle
+        if (Math.random() > 0.5)
+        {
+          wrongAnswers.push(i);
+        }
+        else
+        {
+          wrongAnswers.unshift(i);
+        }
+        
+      }
+    }
+    this.setState({
+      "answersLeft": wrongAnswers,
+      "answerHints": [true, true, true, true, true],
+    });
+    console.log(wrongAnswers);
+  }
 
   /*  I think the obvious solution to randomly selecting data might be to shuffle the array
    *  and then pop off the first X elements,  However I think the average case of brute
@@ -159,7 +219,7 @@ class TimeTrial extends Component {
       "dataReady": true,
       "currName": data[currAnswer].firstName + " " + data[currAnswer].lastName,
       "currAnswer": currAnswer
-    });
+    }, this.setupHints);
   };
 }
 
