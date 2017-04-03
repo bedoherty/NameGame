@@ -44,3 +44,5 @@ TO-DO/Wishlist
 - Refactor existing codebase
 - Store high scores in browser local storage
 - Queue up image loading with an animation to display
+- Allow for keyboard controls
+- Team Mode toggle
