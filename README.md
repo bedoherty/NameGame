@@ -1,10 +1,24 @@
 The Name Game
 ===================
 
-This project is to build a Name Game to help learn employee names at WillowTree.
+This project is to build a Name Game to help learn employee names at WillowTree.  
+The application is structured as a single page application built on React JS.
 
 ----------
 
+
+Builds
+-------------
+In the builds folder you can find a recent version of the game as a production single page application.
+This can be served up via any HTTP server, such as [the NodeJS http-server module](https://www.npmjs.com/package/http-server).
+
+Running the Dev Server
+-------------
+To run the dev server, simply navigate to the root directory, and then run the following commands.
+```
+npm install
+npm start
+```
 
 Game Modes
 -------------
@@ -43,4 +57,4 @@ TO-DO/Wishlist
 -------------
 - Refactor existing codebase
 - Store high scores in browser local storage
-- Queue up image loading with an animation to display
+- Queue up image loading with an animation to displayreact
