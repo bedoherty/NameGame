@@ -8,7 +8,7 @@ class Prompt extends Component {
     return (
       <div>
         <div className="prompt-label">Who is:</div>
-        {this.props.promptImage ? (<img src={this.props.promptImage} className="prompt-image" alt="prompt-image" />) : "" }
+        {this.props.promptImage ? (<img src={this.props.promptImage} className="prompt-image" alt="prompt" />) : "" }
       </div>
     );
   }
