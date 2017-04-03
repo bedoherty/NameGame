@@ -39,11 +39,8 @@ Hints - Future
 > **Toggle Description:**
 > - Options will disappear over time
 
-TO-DO
+TO-DO/Wishlist
 -------------
-- Implement Mat(t) Mode
-- Implement Reverse M ode
-- Implement Hints
 - Refactor existing codebase
 - Store high scores in browser local storage
 - Queue up image loading with an animation to display

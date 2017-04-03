@@ -30,7 +30,7 @@ class Marathon extends Component {
   			() => {this.tryAnswer(4);},
   		],
   		"gameClock": 0,
-  		"currBest": 1000000000000,
+  		"currBest": 0,
   		"lastRoundURL": "",
   		"lastRoundName": "",
   		"lastRoundWasCorrect": null,
@@ -64,7 +64,7 @@ class Marathon extends Component {
         	<CorrectAnswer wasCorrect={this.state.lastRoundWasCorrect} correctImage={this.state.lastRoundURL} correctName={this.state.lastRoundName}/>
         </div>
         <GameClock time={this.state.currStreak} incCallback={this.incrementClock.bind(this)}/>
-        <HighScore highScore={this.state.currStreak} />
+        <HighScore highScore={this.state.currBest} />
         <Stats stats={this.state.correctAnswers.toString() + "/" + (this.state.correctAnswers + this.state.incorrectAnswers).toString() + " Correct"} />
       </div>
     );
@@ -101,8 +101,6 @@ class Marathon extends Component {
   };
 
   tryAnswer = (answer) => {
-  	var answerTime = this.state.gameClock;
-  	console.log(this.state.currentData[this.state.currAnswer]);
   	if (answer == this.state.currAnswer) 
     {
   		this.setState({
@@ -129,9 +127,9 @@ class Marathon extends Component {
   		});
   	}
 
-  	if (answerTime < this.state.currBest) {
+  	if (this.state.currStreak > this.state.currBest) {
   		this.setState({
-  			"currBest": answerTime
+  			"currBest": this.state.currStreak,
   		})
   	}
 
@@ -194,8 +192,6 @@ class Marathon extends Component {
       console.log("Matt:");
       console.log(this.state.WTData[mattIndex]);
 
-      currAnswer = data.indexOf(this.state.WTData[mattIndex]);
-
       itemsNeeded--;
     }
     else
@@ -221,9 +217,14 @@ class Marathon extends Component {
       }
       else
       {
-        data.push(this.state.WTData[newIndex]);
+        data.unshift(this.state.WTData[newIndex]);
       }
   	}
+
+    if (this.props.mattModeEnabled)
+    {
+      currAnswer = data.indexOf(this.state.WTData[mattIndex]);
+    }
 
   	this.setState({
   		"currentData": data,

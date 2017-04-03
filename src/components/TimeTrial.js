@@ -191,8 +191,6 @@ class TimeTrial extends Component {
       console.log("Matt:");
       console.log(this.state.WTData[mattIndex]);
 
-      currAnswer = data.indexOf(this.state.WTData[mattIndex]);
-
       itemsNeeded--;
     }
     else
@@ -218,8 +216,13 @@ class TimeTrial extends Component {
       }
       else
       {
-        data.push(this.state.WTData[newIndex]);
+        data.unshift(this.state.WTData[newIndex]);
       }
+    }
+
+    if (this.props.mattModeEnabled)
+    {
+      currAnswer = data.indexOf(this.state.WTData[mattIndex]);
     }
 
     this.setState({
